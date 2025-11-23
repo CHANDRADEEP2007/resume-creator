@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-100 text-gray-900;
+  }
+}
+
+/* Custom scrollbar for the editor panel */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 114, 128, 0.8);
+}
+
+/* Resume Paper Effect */
+.resume-paper {
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 10mm; /* Adjust based on user preference, standard is often 1 inch or 2.54cm */
+  box-sizing: border-box;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .no-print {
+    display: none;
+  }
+  .resume-paper {
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
