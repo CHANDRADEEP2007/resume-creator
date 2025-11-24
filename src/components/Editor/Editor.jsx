@@ -26,16 +26,20 @@ const Editor = ({ resumeData, updateResumeData }) => {
             <section className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
                 <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">Skills & Fluency</h2>
                 <SkillsForm
-                    coreStrengths={resumeData.coreStrengths}
-                    techFluency={resumeData.techFluency}
-                    updateCore={(data) => updateResumeData('coreStrengths', data)}
-                    updateTech={(data) => updateResumeData('techFluency', data)}
+                    data={{
+                        coreStrengths: resumeData.coreStrengths,
+                        techFluency: resumeData.techFluency
+                    }}
+                    update={(newData) => {
+                        updateResumeData('coreStrengths', newData.coreStrengths);
+                        updateResumeData('techFluency', newData.techFluency);
+                    }}
                 />
             </section>
 
             <section className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
                 <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">Experience</h2>
-                <ExperienceForm data={resumeData.experience} update={(data) => updateResumeData('experience', data)} />
+                <ExperienceForm data={{ experience: resumeData.experience }} update={(data) => updateResumeData('experience', data.experience)} />
             </section>
 
             <section className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">

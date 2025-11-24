@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import Editor from './components/Editor/Editor';
 import ResumePreview from './components/Preview/ResumePreview';
-import PDFExportButton from './components/Preview/PDFExportButton';
 import { initialResumeState } from './data/initialState';
 import { RotateCcw, Save } from 'lucide-react';
+import ExportMenu from './components/Preview/ExportMenu';
 
 function App() {
   // Load from local storage or use initial state
@@ -53,7 +53,7 @@ function App() {
       <div className="w-1/2 h-full bg-gray-500 flex flex-col">
         <div className="p-4 bg-gray-700 text-white flex justify-between items-center shadow-md z-10">
           <span className="font-medium">Live Preview</span>
-          <PDFExportButton targetId="resume-preview" fileName={`${resumeData.personalInfo.fullName.replace(/\s+/g, '_')}_Resume.pdf`} />
+          <ExportMenu targetId="resume-preview" fileName={`${resumeData.personalInfo.fullName.replace(/\s+/g, '_')}_Resume`} />
         </div>
         <div className="flex-1 overflow-y-auto p-8 flex justify-center custom-scrollbar">
           <ResumePreview resumeData={resumeData} />
