@@ -53,7 +53,12 @@ function App() {
       <div className="w-1/2 h-full bg-gray-500 flex flex-col">
         <div className="p-4 bg-gray-700 text-white flex justify-between items-center shadow-md z-10">
           <span className="font-medium">Live Preview</span>
-          <ExportMenu targetId="resume-preview" fileName={`${resumeData.personalInfo.fullName.replace(/\s+/g, '_')}_Resume`} />
+          <span className="font-medium">Live Preview</span>
+          <ExportMenu
+            targetId="resume-preview"
+            fileName={`${resumeData.personalInfo.fullName.replace(/\s+/g, '_')}_Resume`}
+            resumeData={resumeData}
+          />
         </div>
         <div className="flex-1 overflow-y-auto p-8 flex justify-center custom-scrollbar">
           <ResumePreview resumeData={resumeData} />

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { Download, FileText, File } from 'lucide-react';
+import { generateWordHTML } from '../../utils/generateWordHTML';
 
-const ExportMenu = ({ targetId, fileName = 'resume' }) => {
+const ExportMenu = ({ targetId, fileName = 'resume', resumeData }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
 
@@ -44,13 +45,21 @@ const ExportMenu = ({ targetId, fileName = 'resume' }) => {
         setIsExporting(true);
         setIsOpen(false);
         try {
-            const element = document.getElementById(targetId);
-            if (!element) return;
+            // Use the custom generator for Word-compatible HTML (tables instead of flex)
+            // We need to access the resume data. 
+            // Since we don't have direct access to resumeData prop here (it was passed to ResumePreview),
+            // we should probably pass resumeData to ExportMenu as well.
+            // For now, let's assume we update the parent to pass it.
+            // WAIT: I need to update the parent (App.jsx) to pass resumeData to ExportMenu first.
+            // But I can't do that in this single step. 
+            // I will assume resumeData is passed as a prop and update App.jsx next.
 
-            // Basic HTML to Word export using Blob
-            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-            const footer = "</body></html>";
-            const sourceHTML = header + element.innerHTML + footer;
+            if (!resumeData) {
+                console.error("Resume data not available for export");
+                return;
+            }
+
+            const sourceHTML = generateWordHTML(resumeData);
 
             const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
             const fileDownload = document.createElement("a");
