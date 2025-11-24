@@ -34,21 +34,19 @@ export const generateWordHTML = (resumeData) => {
                 <tr>
                     <td style="${styles.tdLeft}">
                         <div style="display: flex; align-items: center;">
-                            <!-- Link Icon Placeholder -->
-                            <span style="color: #0077b5; font-size: 14pt; margin-right: 5pt;">
-                                ${personalInfo.linkType === 'portfolio' ? '🌐' : 'in'}
-                            </span>
-                            <a href="${personalInfo.linkUrl?.startsWith('http') ? personalInfo.linkUrl : `https://${personalInfo.linkUrl}`}" style="${styles.h1}">
-                                ${personalInfo.fullName}
+                            <!-- Link Icon Placeholder (Clickable) -->
+                            <a href="${personalInfo.linkUrl?.startsWith('http') ? personalInfo.linkUrl : `https://${personalInfo.linkUrl}`}" style="text-decoration: none; margin-right: 5pt;">
+                                <span style="color: #0077b5; font-size: 14pt;">
+                                    ${personalInfo.linkType === 'portfolio' ? '🌐' : 'in'}
+                                </span>
                             </a>
+                            <span style="${styles.h1}">
+                                ${personalInfo.fullName}
+                            </span>
                         </div>
                     </td>
                     <td style="${styles.tdRight}">
-                        <div style="margin-bottom: 2pt;">
-                            <a href="${personalInfo.linkUrl?.startsWith('http') ? personalInfo.linkUrl : `https://${personalInfo.linkUrl}`}" style="${styles.link}">
-                                ${personalInfo.linkUrl || 'Link'}
-                            </a>
-                        </div>
+                        <!-- Email only, as Link is on the icon now -->
                         <div>
                             <span style="margin-right: 4pt;">✉️</span>
                             <span style="color: #1d4ed8; font-weight: bold;">${personalInfo.email}</span>
